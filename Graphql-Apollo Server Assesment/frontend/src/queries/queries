@@ -1,0 +1,73 @@
+import { gql } from "@apollo/client";
+
+const LOAD_DATAS = gql`
+  query Query {
+    getAllProducts {
+      product_name
+      price
+      product_des
+      product_image
+      _id
+    }
+  }
+`;
+
+const UPDATE_PRODUCT = gql`
+  mutation UpdateUser(
+    $updateProductId: ID!
+    $product_name: String
+    $price: Int
+    $product_des: String
+    $product_image: String
+  ) {
+    updateProduct(
+      id: $updateProductId
+      product_name: $product_name
+      price: $price
+      product_des: $product_des
+      product_image: $product_image
+    ) {
+      product_name
+      price
+      product_des
+      product_image
+      _id
+    }
+  }
+`;
+
+const INSERT_PRODUCT = gql`
+  mutation CreateProduct(
+    $product_name: String!
+    $price: Int!
+    $product_des: String!
+    $product_image: String!
+  ) {
+    createUser(
+      product_name: $product_name
+      price: $price
+      product_des: $product_des
+      product_image: $product_image
+    ) {
+      _id
+      product_name
+      price
+      product_des
+      product_image
+    }
+  }
+`;
+
+const DELETE_PRODUCT = gql`
+  mutation Mutation($deleteProductId: ID!) {
+    deleteProduct(id: $deleteProductId) {
+      product_name
+      price
+      product_des
+      product_image
+      _id
+    }
+  }
+`;
+
+export { LOAD_DATAS, INSERT_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT };
